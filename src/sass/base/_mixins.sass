@@ -1,0 +1,126 @@
+$desktop-min: 1024px
+$widescreen-min: 1440px
+$mobile-max: 425px
+$tablet-max: 768px
+
+// -==========================================================================================================
+@mixin from-tablet()
+	@media screen and ( min-width: $tablet-max)
+		@content
+
+@mixin from-desktop()
+	@media screen and ( min-width: $desktop-min)
+		@content
+
+@mixin from-widescreen()
+	@media screen and ( min-width: $widescreen-min)
+		@content
+
+@mixin from-mob()
+	@media screen and ( min-width: $mobile-max + 1 )
+		@content
+
+// -==========================================================================================================
+@mixin while-mob()
+	@media screen and ( max-width: $mobile-max  )
+		@content
+
+@mixin until-tablet()
+	@media screen and ( max-width: $tablet-max - 1)
+		@content
+
+@mixin until-desktop()
+	@media screen and ( max-width: $desktop-min - 1)
+		@content
+
+@mixin until-widescreen()
+	@media screen and ( max-width: $widescreen-min - 1)
+		@content
+
+// -==========================================================================================================
+@mixin media-until($width)
+	@media screen and ( max-width: $width)
+		@content
+
+@mixin media-from($width)
+	@media screen and ( min-width: $width)
+		@content
+
+// -==========================================================================================================
+@mixin placeholder()
+	&::-webkit-input-placeholder
+		@content
+	&:-moz-placeholder
+		@content
+	&::-moz-placeholder
+		@content
+	&:-ms-input-placeholder
+		@content
+// -==========================================================================================================
+@mixin Hscroll()
+	scrollbar-color: $second-color $color-block
+	scrollbar-width: thin
+	&::-webkit-scrollbar /* 1 - скроллбар */
+		appearance: none
+		-webkit-appearance: none
+		&:horizontal
+			height: 10px
+	//&::-webkit-scrollbar-button  /* 2 - кнопка */
+	&::-webkit-scrollbar-track /* 3 - трек */
+		border-radius: 2px
+		background: #F2F2F2
+	//&::-webkit-scrollbar-track-piece   /* 4 - видимая часть трека */
+	&::-webkit-scrollbar-thumb /* 5 - ползунок */
+		background-color: #C4C4C4
+		border-radius: 2px
+		border: 3px solid #F2F2F2
+//&::-webkit-scrollbar-corner		/* 6 - уголок */
+//&::-webkit-resizer				 /* 7 - изменение размеров окна*/
+
+@mixin Vscroll()
+	scrollbar-color: $second-color $color-block
+	scrollbar-width: thin
+	&::-webkit-scrollbar /* 1 - скроллбар */
+		width: 6px
+		appearance: none
+		-webkit-appearance: none
+	&::-webkit-scrollbar-track /* 3 - трек */
+		border-radius: 2px
+		background: $color-block
+	&::-webkit-scrollbar-thumb /* 5 - ползунок */
+		border-radius: 2px
+		background-color: $second-color
+		border: 2px solid $second-color
+
+=flex($justify-content:flex-start,$align-items:flex-start)
+	display: flex
+	justify-content: $justify-content
+	align-items: $align-items
+
+=text-style($font-size:14px,$line-height:normal)
+	font-size: $font-size
+	line-height: $line-height
+
+@mixin button()
+	appearance: none
+	font-weight: 500
+	height: 49px
+	padding: 0 18px
+	border-radius: 5px
+	color: white
+	background: $second-color
+	cursor: pointer
+	user-select: none
+	display: flex
+	align-items: center
+	justify-content: center
+	transition: background .3s
+	&:hover
+		background: #c74a36
+	&.disabled, &:disabled
+		cursor: default
+		color: #CF8091
+		pointer-events: none
+
+.btn
+	+button()

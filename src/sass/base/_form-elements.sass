@@ -1,0 +1,322 @@
+.form
+	font-size: 16px
+	&__title
+		font-size: 20px
+		font-weight: 400
+		text-transform: uppercase
+		letter-spacing: 0.03em
+		margin-bottom: 40px
+
+		+media-until(640px)
+			font-size: 18px
+			text-align: center
+
+	&__subtitle
+		margin-bottom: 30px
+		b
+			font-weight: 500
+
+	&__btns
+		display: flex
+		&-item
+			&:not(:last-child)
+				margin-right: 16px
+
+	&__submit
+		margin: 50px 0 -20px
+		display: flex
+		align-items: center
+		&-text
+			max-width: 380px
+			font-size: 14px
+			flex: 1 1 auto
+			a
+				color: $main-color
+				transition: opacity .4s ease
+				&:hover
+					opacity: 0.7
+
+		> *
+			margin-bottom: 20px
+
+		&-btn
+			text-align: center
+			margin-right: 30px
+
+		&-link
+			display: inline-block
+			border-bottom: 1px solid
+			transition: border-color .3s ease
+
+			&:hover
+				border-color: transparent
+
+	&__inputs
+		display: flex
+		flex-wrap: wrap
+		+ .form__inputs
+			margin-top: 30px
+		&:not(&--2, &--3, &--4, &--5)
+			.form
+				&__inputs
+					&-input
+						width: 100%
+
+
+.default-input
+	display: flex
+	flex-direction: column-reverse
+	position: relative
+	justify-content: space-between
+	flex: 1 1 auto
+	&__inputs
+		display: flex
+		.default-input
+			flex: none
+			&:not(:last-child)
+				margin-right: 16px
+	&__input
+		border: 1px solid $border-color
+		border-radius: 50px
+		font-size: 16px
+		line-height: 1.4
+		width: 100%
+		padding: 12px 32px
+		transition: border-color .3s ease
+		&:focus
+			border-color: $main-color
+		+media-until(1520px)
+			font-size: 14px
+
+		&:not(.default-input__input--textarea)
+			max-height: 50px
+
+		&--error
+			border-bottom-color: $error-color
+
+			~ .default-input
+				&__error
+					opacity: 1
+		&--select
+			&:focus
+				z-index: 2
+
+		&--file
+			position: absolute 
+			top: 0
+			left: 0
+			opacity: 0
+			size: 1px 
+			overflow: hidden
+			pointer-events: none
+
+		&-filetext
+			position: relative
+
+		&[readonly]
+			cursor: default
+
+		&--textarea
+			min-width: 100%
+			max-width: 100%
+			max-height: 150px
+			min-height: 50px
+			resize: vertical
+
+		&[required],
+		&.required
+			~ .default-input__label
+				&:after
+					content: "*"
+
+	&__label
+		font-size: 14px
+		font-weight: 500
+		margin-bottom: 8px
+		color: $main-color
+
+
+	&__error
+		position: absolute 
+		right: 0
+		top: calc(100% + 2px)
+		font-size: 12px
+		font-weight: 400
+		line-height: 1.2
+		color: $error-color
+		transition: opacity .3s ease
+		opacity: 0
+		pointer-events: none
+
+
+.default-select
+	display: flex
+	flex-direction: column-reverse
+	position: relative
+	justify-content: space-between
+	flex: 1 1 auto
+	&__label
+		font-size: 14px
+		font-weight: 500
+		margin-bottom: 8px
+		color: $main-color
+
+.default-checkbox
+	position: relative
+	+ .default-checkbox
+		margin-top: 16px
+	&__input
+		appearance: none
+		position: absolute
+		top: 0
+		left: 0 
+		width: 0
+		height: 0
+		opacity: 0
+	&__label
+		position: relative
+		display: flex
+		cursor: pointer
+		font-size: 16px
+		color: $border-color
+		&::selection
+			background: transparent
+			color: $border-color
+		&::before
+			content: ''
+			position: relative
+			display: block
+			width: 20px
+			height: 20px
+			border-radius: 4px
+			background-color: #fff
+			margin-right: 20px
+			flex: none
+
+	&__input:checked
+		+ .default-checkbox__label
+			&::before
+				background: $second-color
+
+.default-radio
+	position: relative
+	&__input
+		appearance: none
+		position: absolute
+		top: 0
+		left: 0 
+		width: 0
+		height: 0
+		opacity: 0
+	&__label
+		position: relative
+		display: flex
+		cursor: pointer
+		&::selection
+			background: transparent
+			color: $border-color
+		&::before
+			content: ''
+			position: relative
+			top: 3px
+			display: block
+			width: 20px
+			height: 20px
+			border-radius: 50%
+			margin-right: 15px
+			flex: none
+	&__input:checked
+		+ .default-radio__label
+			&::before
+				background: $second-color
+
+input[type="number"]
+	appearance: none
+	-moz-appearance: textfield
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button
+		appearance: none
+		-webkit-appearance: none
+
+.default-file
+	position: relative
+	&__input
+		position: absolute
+		opacity: 0
+	&__label
+		display: flex
+		align-items: center
+		justify-content: center
+		font-size: 14px
+		font-weight: 400
+		cursor: pointer
+		&::before
+			content: ''
+			position: relative
+			display: block
+			margin-right: 12px
+			width: 16px
+			height: 16px
+			background: $black
+
+
+@supports (display: grid)
+	.form__inputs
+		margin: 0 
+		display: grid
+		grid-gap: 24px 50px
+		+media-until(1000px)
+			grid-gap: 24px 30px
+		&--2
+			grid-template-columns: repeat(2, 1fr)
+		&--3
+			grid-template-columns: repeat(3, 1fr)
+		&--4
+			grid-template-columns: repeat(4, 1fr)
+		&--5
+			grid-template-columns: repeat(5, 1fr)
+			+media-until(1440px)
+				grid-template-columns: repeat(3, 1fr)
+
+		&-input
+			width: auto !important
+			margin: 0 !important
+
+			&--2
+				grid-column: span 2
+
+			&--3
+				grid-column: span 3
+
+			&--4
+				grid-column: span 4
+
++media-until(767px)
+	.form__inputs
+		gap: 20px
+		+ .form__inputs
+			margin-top: 20px
+		&--2, &--3, &--4, &--5
+			grid-template-columns: 1fr
+		&-input
+			&--2, &--3, &--4, &--5
+				grid-column: span 1
+
+	.form
+		&__submit
+			display: block
+			margin-top: 30px
+			.btn
+				width: 100%
+			&-text
+				margin: 20px 0 0
+				text-align: center
+				margin-left: auto
+				margin-right: auto
+			&-btn
+				margin-right: 0
+		&__title
+			margin-bottom: 30px
+		&__subtitle
+			margin-bottom: 20px
+

@@ -1,0 +1,27 @@
+doctype html
+html(lang="ru")
+    //- HEAD
+    include ../base/_head.pug
+    body(id="body").main
+
+        //- SVG-SPRITE
+        include ../base/_svg-sprite.pug
+
+        //- MIXINS
+        include ../base/_mixins.pug
+
+        //- ОСНОВНАЯ ОБЕРТКА
+        .layout
+            //- HEADER
+            include ../sections/_header.pug
+
+            main
+                //- -----------
+                .test
+
+
+            //- FOOTER
+            include ../sections/_footer.pug
+
+    //- SCRIPTS
+    include ../base/_scripts.pug

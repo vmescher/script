@@ -1,0 +1,28 @@
+mixin svg(name, vbox, w, h)
+	- mod = mod || ''
+		svg(xmlns='http://www.w3.org/2000/svg' xmlns:xlink="http://www.w3.org/1999/xlink" version='1.1'  class=`icon icon-`+ name, viewBox = vbox, width = w, height = h)
+			use(xlink:href="#" + name)
+
+//- Пример для понимания 
+//- +svg('./img/img1.png', '0 0 10 10')
+
+mixin SelectBox(name, options, className)
+	div(class=`select-box ${className}`)
+		.select-box__current(tabindex="1")
+			each option, index in options
+				.select-box__value
+					input.select-box__input(type="radio" id='s'+index value=option.value name=name checked)
+					p.select-box__input-text #{option.name}
+		ul.select-box__list
+			each option, index in options
+				li
+					label.select-box__option(for='s'+index aria-hidden) #{option.name}
+
+//- Пример
+//- +SelectBox('some-filter', [
+//- 	{name: 'Option', value: '1'}, 
+//- 	{name: 'Option', value: '2'}, 
+//- 	{name: 'Option', value: '3'}, 
+//- 	{name: 'Option', value: '4'}, 
+//- 	{name: 'Option', value: '5'}
+//- 	], 'filter__class')

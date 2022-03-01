@@ -1,0 +1,108 @@
+.toast
+    position: fixed
+    top: 30px
+    left: 50%
+    z-index: 150
+    padding: 17px 25px 17px 20px
+    border-radius: 3px
+    display: flex
+    align-items: center
+    min-width: 450px
+    transform: translateX(-50%)
+    +until-tablet
+        width: 100%
+        min-width: unset
+        top: 0
+        border-radius: 0 0 5px 5px
+    &.toast-inserting
+        animation: toast-in .5s ease forwards
+    &.toast-removing
+        animation: toast-in .5s ease reverse forwards
+    &-cart
+        background-color: $body-text-color
+        & *
+            color: white
+    &-error
+        background: linear-gradient(90deg, #004ABB 0.01%, #0051BB 16.01%, #0065BB 40.01%, #0071BB 51.01%, #0777C1 60.01%, #238FDB 100.01%)
+        // background-color: $secod-color
+        &::before
+            content: ''
+            size: 25px
+            flex-shrink: 0
+            border-radius: 50%
+            border: 2px solid white
+            margin-right: 15px
+        &::after
+            content: '!'
+            font-weight: bold
+            color: white
+            width: 13px
+            height: 6px
+            position: absolute
+            left: 30px
+            top: 40%
+            transform: translateY(-50%)
+        & *
+            color: white
+    &-success
+        background: linear-gradient(90deg, #004ABB 0.01%, #0051BB 16.01%, #0065BB 40.01%, #0071BB 51.01%, #0777C1 60.01%, #238FDB 100.01%)
+        // background-color: #43d787
+
+        & *
+            color: white
+    &__content
+        width: 100%
+        margin-right: 32px
+        display: flex
+        flex-direction: column
+        align-items: flex-start
+    &__title
+        font-weight: 600
+        font-size: 20px
+        line-height: 1.5
+    &__text
+        font-weight: 300
+        font-size: 14px
+        line-height: 130%
+    &__buttons
+        height: 100%
+        display: flex
+        align-items: center
+        & > *
+            cursor: pointer
+            height: 100%
+            padding: 10px 30px
+            // border-left: 1px solid rgba(255, 255, 255, .2)
+            display: flex
+            align-items: center
+            justify-content: center
+            &:last-child
+                padding-right: 0
+    &__close
+        &::after
+            content: ''
+            size: 25px
+            background: url("data:image/svg+xml,%3Csvg width='15' height='15' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.93806 8.00465L15.7966 1.14611C16.0613 0.890455 16.0687 0.468636 15.813 0.203925C15.5574 -0.0607856 15.1355 -0.0681257 14.8708 0.187527C14.8653 0.192876 14.8598 0.198342 14.8544 0.203925L7.99584 7.06247L1.13729 0.203886C0.872579 -0.0517667 0.45076 -0.0444266 0.195107 0.220284C-0.0542989 0.478514 -0.0542989 0.887878 0.195107 1.14611L7.05365 8.00465L0.195107 14.8632C-0.0650357 15.1234 -0.0650357 15.5452 0.195107 15.8054C0.455289 16.0655 0.877108 16.0655 1.13729 15.8054L7.99584 8.94683L14.8544 15.8054C15.1191 16.061 15.5409 16.0537 15.7966 15.789C16.0459 15.5308 16.0459 15.1214 15.7966 14.8632L8.93806 8.00465Z' fill='white' /%3E%3C/svg%3E") no-repeat center
+            background-size: none
+    &__cart
+        &::after
+            content: ''
+            size: 25px
+            background: url("data:image/svg+xml,%3Csvg width='19' height='23' viewBox='0 0 19 23' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18.5625 6.28906V22.1016C18.5625 22.5978 18.1778 23 17.7031 23C17.2285 23 16.8438 22.5978 16.8438 22.1016V7.1875H15.125V9.88281C15.125 10.379 14.7403 10.7812 14.2656 10.7812C13.791 10.7812 13.4062 10.379 13.4062 9.88281V7.1875H5.15625V9.88281C5.15625 10.379 4.77151 10.7812 4.29688 10.7812C3.82224 10.7812 3.4375 10.379 3.4375 9.88281V7.1875H1.71875V21.2031H17.5C17.9746 21.2031 18.3594 21.6054 18.3594 22.1016C18.3594 22.5978 17.9746 23 17.5 23H0.859375C0.384742 23 0 22.5978 0 22.1016V6.28906C0 5.79286 0.384742 5.39062 0.859375 5.39062H3.47815C3.81954 2.35943 6.29161 0 9.28125 0C12.2709 0 14.743 2.35943 15.0844 5.39062H17.7031C18.1778 5.39062 18.5625 5.79286 18.5625 6.28906ZM13.3486 5.39062C13.0203 3.35364 11.3215 1.79688 9.28125 1.79688C7.24096 1.79688 5.54215 3.35364 5.21387 5.39062H13.3486Z' fill='white' /%3E%3C/svg%3E") no-repeat center
+            background-size: none
+
+//@keyframes toast-in
+//    0%
+//        transform: translateX(calc( -50% + 50px ))
+//
+//    70%
+//        transform: translateX(calc(-50% - 30px))
+//
+//    100%
+//        transform: translateX(-50%)
+@keyframes toast-in
+    0%
+        transform: translate(-50%, calc(-100% - 30px))
+
+    100%
+        transform: translate(-50%, 0)

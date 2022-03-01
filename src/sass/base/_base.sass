@@ -1,0 +1,150 @@
+html
+	height: 100%
+	font-size: 16px
+	line-height: 1.5
+	scroll-behavior: smooth
+	font-family: $main-font
+body
+	width: 100%
+	min-height: 100%
+	background-color: white
+	padding: 0
+	margin: 0
+	color: $body-text-color
+	display: flex
+	flex-direction: column
+	+Vscroll
+	&.fancybox-active
+		overflow: hidden
+	&.mobilemenu-opened, &.popup-opened
+		position: relative
+		overflow: hidden
+		@media screen and ( min-width: 1023px)
+			width: calc(100% - 6px)
+
+*::selection
+	color: #fff
+	background: $main-color
+
+.layout
+	width: 100%
+	min-height: 100vh
+	position: relative
+	overflow: hidden
+	display: flex
+	flex-direction: column
+	main
+		flex-grow: 1
+
+.wrapper
+	width: 100%
+	max-width: $content-width + px
+	margin: 0 auto
+	position: relative
+	padding: 0 16px
+	display: flex
+	flex-direction: column
+
+section
+	margin-bottom: 100px
+	+until-desktop
+		margin-bottom: 70px
+	+until-tablet
+		margin-bottom: 40px
+img, svg
+	max-width: 100%
+
+select, input, textarea, button
+	appearance: none
+
+ul, ol, h1, h2, h3, h4, a
+	list-style: none
+	padding: 0
+	margin: 0
+	text-decoration: none
+
+// buttons,inputs=================================================================================================================================
+
+*, *::after, *::before
+	box-sizing: border-box
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0)
+	-webkit-tap-highlight-color: transparent
+button
+	appearance: none
+	cursor: pointer
+	background: none
+	border: none
+	&:active
+		outline: none
+	&:focus
+		outline: none
+
+textarea
+	resize: vertical
+
+input, textarea
+	border: none
+
+a
+	font-weight: inherit
+	color: inherit
+
+	&:active
+		outline: none
+	&:focus
+		outline: none
+
+	&[href^="tel"], &[href^="mail"]
+		white-space: nowrap
+
+	&:not([class])
+		border-bottom: 1px solid transparent
+		transition: border-color .4s ease, opacity .4s ease
+
+		&:hover, &:focus
+			border-color: currentColor
+
+input:focus, input:active, select:focus, select:active, textarea:focus, textarea:active
+	outline: none
+
+*::-webkit-input-placeholder
+	color: $border-color
+
+*:-moz-placeholder
+	color: $border-color
+
+*::-moz-placeholder
+	color: $border-color
+
+*:-ms-input-placeholder
+	color: $border-color
+
+.swiper-button-disabled
+	opacity: .5
+	pointer-events: none
+
+input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="email"], input[type="month"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="time"], input[type="url"], input[type="week"], input:not([type]), textarea, select, input[type="submit"], button
+	-webkit-appearance: none
+	appearance: none
+	font-family: inherit
+
+// перебить стили автозаполнения
+input
+	&:-webkit-autofill 
+		-webkit-animation-name: autofill
+		-webkit-animation-fill-mode: both
+		-webkit-box-shadow: 0 0 0 30px white inset !important // цвет поля
+		&:hover,
+		&:focus,
+		&:active
+			-webkit-box-shadow: 0 0 0 30px white inset !important // цвет поля
+	&:-internal-autofill-selected
+		color: inherit !important
+		background-color: #fff !important // цвет поля
+
+// Fancybox setup
+.compensate-for-scrollbar
+	width: calc(100% - 6px)
+.fancybox-is-open .fancybox-bg
+	background-color: black
+	opacity: .8

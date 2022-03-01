@@ -1,0 +1,71 @@
+.popup
+    z-index: 50
+    background-color: #FFFFFF
+    width: 100%
+    height: 100vh
+    position: fixed
+    top: 0
+    left: 0
+    transition: opacity .3s
+    display: none
+    align-items: center
+    justify-content: center
+    opacity: 0
+    &.opening
+        display: flex
+        opacity: 1
+    &.opened
+        //animation: fadeIn .3s
+        opacity: 1
+        display: flex
+        & .popup__block
+            transform: scale(1)
+    &.closing
+        opacity: 0
+        & .popup__block
+            transform: scale(0)
+    &__close
+        z-index: 2
+        size: 20px
+        position: absolute
+        top: 30px
+        right: 30px
+        cursor: pointer
+        +until-tablet
+            top: 20px
+        & span
+            pointer-events: none
+            position: absolute
+            display: block
+            background-color: #C2C5CC
+            width: 18px
+            height: 2px
+            color: black
+            top: 50%
+            left: 0
+            &:first-of-type
+                transform: rotate(45deg)
+            &:last-of-type
+                transform: rotate(-45deg)
+    &__block
+        transform: scale(0.1)
+        position: relative
+        width: 100%
+        max-height: 100%
+        max-width: 700px
+        padding: 45px 50px
+        transition: transform .4s
+        background: #FFFFFF
+        border: 1px solid #ECEFF5
+        overflow-y: auto
+        +until-tablet
+            padding: 25px
+            padding-top: 40px
+    &__content
+        width: 100%
+
+@keyframes fadeIn
+    0%
+        opacity: 0
+    100%
+        opacity: 1
